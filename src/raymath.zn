@@ -14,11 +14,6 @@ pub struct float16 {
 
 const EPSILON: f32 = 0.000001;
 
-implement Copy : Vector2 {}
-implement Copy : Vector3 {}
-implement Copy : Vector4 {}
-implement Copy : Matrix {}
-
 pub fn Clamp(value: f32, min: f32, max: f32) f32 {
     let result = value;
     if (result < min) {

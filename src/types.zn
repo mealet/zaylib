@@ -281,6 +281,42 @@ pub struct AutomationEventList {
     pub events: [*]AutomationEvent,
 }
 
+implement Copy : Vector2 {}
+implement Copy : Vector3 {}
+implement Copy : Vector4 {}
+implement Copy : Matrix {}
+implement Copy : Color {}
+implement Copy : Rectangle {}
+implement Copy : Image {}
+implement Copy : Texture {}
+implement Copy : RenderTexture {}
+implement Copy : NPatchInfo {}
+implement Copy : GlyphInfo {}
+implement Copy : Font {}
+implement Copy : Camera3D {}
+implement Copy : Camera2D {}
+implement Copy : Mesh {}
+implement Copy : Shader {}
+implement Copy : MaterialMap {}
+implement Copy : Material {}
+implement Copy : Transform {}
+implement Copy : BoneInfo {}
+implement Copy : ModelSkeleton {}
+implement Copy : Model {}
+implement Copy : ModelAnimation {}
+implement Copy : Ray {}
+implement Copy : RayCollision {}
+implement Copy : BoundingBox {}
+implement Copy : Wave {}
+implement Copy : AudioStream {}
+implement Copy : Sound {}
+implement Copy : Music {}
+implement Copy : VrDeviceInfo {}
+implement Copy : VrStereoConfig {}
+implement Copy : FilePathList {}
+implement Copy : AutomationEvent {}
+implement Copy : AutomationEventList {}
+
 pub alias TraceLogCallback = fn(i32, [*]const char, *void) void;
 pub alias LoadFileDataCallback = fn([*]const char, *i32) [*]u8;
 pub alias SaveFileDataCallback = fn([*]const char, *void, i32) bool;
