@@ -8,3 +8,4 @@ pub use zaylib.textures;
 pub use zaylib.text;
 pub use zaylib.models;
 pub use zaylib.audio;
+pub use zaylib.raymath;
