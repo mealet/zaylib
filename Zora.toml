@@ -1,5 +1,6 @@
 [package]
 name = "zaylib"
+description = "Zeen bindings for raylib"
 version = "0.0.0"
 zeen = "^0.3.0"
 type = "lib/static"
