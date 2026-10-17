@@ -1,0 +1,289 @@
+pub struct Vector2 {
+    pub x: f32,
+    pub y: f32,
+}
+
+pub struct Vector3 {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+}
+
+pub struct Vector4 {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub w: f32,
+}
+
+pub alias Quaternion = Vector4;
+
+pub struct Matrix {
+    pub m0: f32,
+    pub m4: f32,
+    pub m8: f32,
+    pub m12: f32,
+    pub m1: f32,
+    pub m5: f32,
+    pub m9: f32,
+    pub m13: f32,
+    pub m2: f32,
+    pub m6: f32,
+    pub m10: f32,
+    pub m14: f32,
+    pub m3: f32,
+    pub m7: f32,
+    pub m11: f32,
+    pub m15: f32,
+}
+
+pub struct Color {
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
+    pub a: u8,
+}
+
+pub struct Rectangle {
+    pub x: f32,
+    pub y: f32,
+    pub width: f32,
+    pub height: f32,
+}
+
+pub struct Image {
+    pub data: *void,
+    pub width: i32,
+    pub height: i32,
+    pub mipmaps: i32,
+    pub format: i32,
+}
+
+pub struct Texture {
+    pub id: u32,
+    pub width: i32,
+    pub height: i32,
+    pub mipmaps: i32,
+    pub format: i32,
+}
+
+pub alias Texture2D = Texture;
+pub alias TextureCubemap = Texture;
+
+pub struct RenderTexture {
+    pub id: u32,
+    pub texture: Texture,
+    pub depth: Texture,
+}
+
+pub alias RenderTexture2D = RenderTexture;
+
+pub struct NPatchInfo {
+    pub source: Rectangle,
+    pub left: i32,
+    pub top: i32,
+    pub right: i32,
+    pub bottom: i32,
+    pub layout: i32,
+}
+
+pub struct GlyphInfo {
+    pub value: i32,
+    pub offsetX: i32,
+    pub offsetY: i32,
+    pub advanceX: i32,
+    pub image: Image,
+}
+
+pub struct Font {
+    pub baseSize: i32,
+    pub glyphCount: i32,
+    pub glyphPadding: i32,
+    pub texture: Texture2D,
+    pub recs: [*]Rectangle,
+    pub glyphs: [*]GlyphInfo,
+}
+
+pub struct Camera3D {
+    pub position: Vector3,
+    pub target: Vector3,
+    pub up: Vector3,
+    pub fovy: f32,
+    pub projection: i32,
+}
+
+pub alias Camera = Camera3D;
+
+pub struct Camera2D {
+    pub offset: Vector2,
+    pub target: Vector2,
+    pub rotation: f32,
+    pub zoom: f32,
+}
+
+pub struct Mesh {
+    pub vertexCount: i32,
+    pub triangleCount: i32,
+    pub vertices: [*]f32,
+    pub texcoords: [*]f32,
+    pub texcoords2: [*]f32,
+    pub normals: [*]f32,
+    pub tangents: [*]f32,
+    pub colors: [*]u8,
+    pub indices: [*]u16,
+    pub boneCount: i32,
+    pub boneIndices: [*]u8,
+    pub boneWeights: [*]f32,
+    pub animVertices: [*]f32,
+    pub animNormals: [*]f32,
+    pub vaoId: u32,
+    pub vboId: [*]u32,
+}
+
+pub struct Shader {
+    pub id: u32,
+    pub locs: [*]i32,
+}
+
+pub struct MaterialMap {
+    pub texture: Texture2D,
+    pub color: Color,
+    pub value: f32,
+}
+
+pub struct Material {
+    pub shader: Shader,
+    pub maps: [*]MaterialMap,
+    pub params: [4]f32,
+}
+
+pub struct Transform {
+    pub translation: Vector3,
+    pub rotation: Quaternion,
+    pub scale: Vector3,
+}
+
+pub alias ModelAnimPose = *Transform;
+
+pub struct BoneInfo {
+    pub name: [32]char,
+    pub parent: i32,
+}
+
+pub struct ModelSkeleton {
+    pub boneCount: i32,
+    pub bones: [*]BoneInfo,
+    pub bindPose: ModelAnimPose,
+}
+
+pub struct Model {
+    pub transform: Matrix,
+    pub meshCount: i32,
+    pub materialCount: i32,
+    pub meshes: [*]Mesh,
+    pub materials: [*]Material,
+    pub meshMaterial: [*]i32,
+    pub skeleton: ModelSkeleton,
+    pub currentPose: ModelAnimPose,
+    pub boneMatrices: [*]Matrix,
+}
+
+pub struct ModelAnimation {
+    pub name: [32]char,
+    pub boneCount: i32,
+    pub keyframeCount: i32,
+    pub keyframePoses: [*][*]Transform,
+}
+
+pub struct Ray {
+    pub position: Vector3,
+    pub direction: Vector3,
+}
+
+pub struct RayCollision {
+    pub hit: bool,
+    pub distance: f32,
+    pub point: Vector3,
+    pub normal: Vector3,
+}
+
+pub struct BoundingBox {
+    pub min: Vector3,
+    pub max: Vector3,
+}
+
+pub struct Wave {
+    pub frameCount: u32,
+    pub sampleRate: u32,
+    pub sampleSize: u32,
+    pub channels: u32,
+    pub data: *void,
+}
+
+pub struct AudioStream {
+    pub buffer: *void,
+    pub processor: *void,
+    pub sampleRate: u32,
+    pub sampleSize: u32,
+    pub channels: u32,
+}
+
+pub struct Sound {
+    pub stream: AudioStream,
+    pub frameCount: u32,
+}
+
+pub struct Music {
+    pub stream: AudioStream,
+    pub frameCount: u32,
+    pub looping: bool,
+    pub ctxType: i32,
+    pub ctxData: *void,
+}
+
+pub struct VrDeviceInfo {
+    pub hResolution: i32,
+    pub vResolution: i32,
+    pub hScreenSize: f32,
+    pub vScreenSize: f32,
+    pub eyeToScreenDistance: f32,
+    pub lensSeparationDistance: f32,
+    pub interpupillaryDistance: f32,
+    pub lensDistortionValues: [4]f32,
+    pub chromaAbCorrection: [4]f32,
+}
+
+pub struct VrStereoConfig {
+    pub projection: [2]Matrix,
+    pub viewOffset: [2]Matrix,
+    pub leftLensCenter: [2]f32,
+    pub rightLensCenter: [2]f32,
+    pub leftScreenCenter: [2]f32,
+    pub rightScreenCenter: [2]f32,
+    pub scale: [2]f32,
+    pub scaleIn: [2]f32,
+}
+
+pub struct FilePathList {
+    pub count: u32,
+    pub paths: [*][*]char,
+}
+
+pub struct AutomationEvent {
+    pub frame: u32,
+    pub kind: u32,
+    pub params: [4]i32,
+}
+
+pub struct AutomationEventList {
+    pub capacity: u32,
+    pub count: u32,
+    pub events: [*]AutomationEvent,
+}
+
+pub alias TraceLogCallback = fn(i32, [*]const char, *void) void;
+pub alias LoadFileDataCallback = fn([*]const char, *i32) [*]u8;
+pub alias SaveFileDataCallback = fn([*]const char, *void, i32) bool;
+pub alias LoadFileTextCallback = fn([*]const char) *char;
+pub alias SaveFileTextCallback = fn([*]const char, [*]const char) bool;
+pub alias AudioCallback = fn(*void, u32) void;

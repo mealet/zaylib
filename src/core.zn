@@ -1,0 +1,243 @@
+use std.c.types;
+use zaylib.types;
+
+pub extern fn InitWindow(width: i32, height: i32, title: [*]const char) void;
+pub extern fn CloseWindow() void;
+pub extern fn WindowShouldClose() bool;
+pub extern fn IsWindowReady() bool;
+pub extern fn IsWindowFullscreen() bool;
+pub extern fn IsWindowHidden() bool;
+pub extern fn IsWindowMinimized() bool;
+pub extern fn IsWindowMaximized() bool;
+pub extern fn IsWindowFocused() bool;
+pub extern fn IsWindowResized() bool;
+pub extern fn IsWindowState(flag: u32) bool;
+pub extern fn SetWindowState(flags: u32) void;
+pub extern fn ClearWindowState(flags: u32) void;
+pub extern fn ToggleFullscreen() void;
+pub extern fn ToggleBorderlessWindowed() void;
+pub extern fn MaximizeWindow() void;
+pub extern fn MinimizeWindow() void;
+pub extern fn RestoreWindow() void;
+pub extern fn SetWindowIcon(image: Image) void;
+pub extern fn SetWindowIcons(images: [*]Image, count: i32) void;
+pub extern fn SetWindowTitle(title: [*]const char) void;
+pub extern fn SetWindowPosition(x: i32, y: i32) void;
+pub extern fn SetWindowMonitor(monitor: i32) void;
+pub extern fn SetWindowMinSize(width: i32, height: i32) void;
+pub extern fn SetWindowMaxSize(width: i32, height: i32) void;
+pub extern fn SetWindowSize(width: i32, height: i32) void;
+pub extern fn SetWindowOpacity(opacity: f32) void;
+pub extern fn SetWindowFocused() void;
+pub extern fn GetWindowHandle() *void;
+pub extern fn GetScreenWidth() i32;
+pub extern fn GetScreenHeight() i32;
+pub extern fn GetRenderWidth() i32;
+pub extern fn GetRenderHeight() i32;
+pub extern fn GetMonitorCount() i32;
+pub extern fn GetCurrentMonitor() i32;
+pub extern fn GetMonitorPosition(monitor: i32) Vector2;
+pub extern fn GetMonitorWidth(monitor: i32) i32;
+pub extern fn GetMonitorHeight(monitor: i32) i32;
+pub extern fn GetMonitorPhysicalWidth(monitor: i32) i32;
+pub extern fn GetMonitorPhysicalHeight(monitor: i32) i32;
+pub extern fn GetMonitorRefreshRate(monitor: i32) i32;
+pub extern fn GetWindowPosition() Vector2;
+pub extern fn GetWindowScaleDPI() Vector2;
+pub extern fn GetMonitorName(monitor: i32) *const char;
+pub extern fn SetClipboardText(text: [*]const char) void;
+pub extern fn GetClipboardText() *const char;
+pub extern fn GetClipboardImage() Image;
+pub extern fn EnableEventWaiting() void;
+pub extern fn DisableEventWaiting() void;
+
+pub extern fn ShowCursor() void;
+pub extern fn HideCursor() void;
+pub extern fn IsCursorHidden() bool;
+pub extern fn EnableCursor() void;
+pub extern fn DisableCursor() void;
+pub extern fn IsCursorOnScreen() bool;
+
+pub extern fn ClearBackground(color: Color) void;
+pub extern fn BeginDrawing() void;
+pub extern fn EndDrawing() void;
+pub extern fn BeginMode2D(camera: Camera2D) void;
+pub extern fn EndMode2D() void;
+pub extern fn BeginMode3D(camera: Camera3D) void;
+pub extern fn EndMode3D() void;
+pub extern fn BeginTextureMode(target: RenderTexture2D) void;
+pub extern fn EndTextureMode() void;
+pub extern fn BeginShaderMode(shader: Shader) void;
+pub extern fn EndShaderMode() void;
+pub extern fn BeginBlendMode(mode: i32) void;
+pub extern fn EndBlendMode() void;
+pub extern fn BeginScissorMode(x: i32, y: i32, width: i32, height: i32) void;
+pub extern fn EndScissorMode() void;
+pub extern fn BeginVrStereoMode(config: VrStereoConfig) void;
+pub extern fn EndVrStereoMode() void;
+
+pub extern fn LoadVrStereoConfig(device: VrDeviceInfo) VrStereoConfig;
+pub extern fn UnloadVrStereoConfig(config: VrStereoConfig) void;
+
+pub extern fn LoadShader(vsFileName: [*]const char, fsFileName: [*]const char) Shader;
+pub extern fn LoadShaderFromMemory(vsCode: [*]const char, fsCode: [*]const char) Shader;
+pub extern fn IsShaderValid(shader: Shader) bool;
+pub extern fn GetShaderLocation(shader: Shader, uniformName: [*]const char) i32;
+pub extern fn GetShaderLocationAttrib(shader: Shader, attribName: [*]const char) i32;
+pub extern fn SetShaderValue(shader: Shader, locIndex: i32, value: *const void, uniformType: i32) void;
+pub extern fn SetShaderValueV(shader: Shader, locIndex: i32, value: *const void, uniformType: i32, count: i32) void;
+pub extern fn SetShaderValueMatrix(shader: Shader, locIndex: i32, mat: Matrix) void;
+pub extern fn SetShaderValueTexture(shader: Shader, locIndex: i32, texture: Texture2D) void;
+pub extern fn UnloadShader(shader: Shader) void;
+
+pub extern fn GetScreenToWorldRay(position: Vector2, camera: Camera) Ray;
+pub extern fn GetScreenToWorldRayEx(position: Vector2, camera: Camera, width: i32, height: i32) Ray;
+pub extern fn GetWorldToScreen(position: Vector3, camera: Camera) Vector2;
+pub extern fn GetWorldToScreenEx(position: Vector3, camera: Camera, width: i32, height: i32) Vector2;
+pub extern fn GetWorldToScreen2D(position: Vector2, camera: Camera2D) Vector2;
+pub extern fn GetScreenToWorld2D(position: Vector2, camera: Camera2D) Vector2;
+pub extern fn GetCameraMatrix(camera: Camera) Matrix;
+pub extern fn GetCameraMatrix2D(camera: Camera2D) Matrix;
+
+pub extern fn SetTargetFPS(fps: i32) void;
+pub extern fn GetFrameTime() f32;
+pub extern fn GetTime() f64;
+pub extern fn GetFPS() i32;
+
+pub extern fn SwapScreenBuffer() void;
+pub extern fn PollInputEvents() void;
+pub extern fn WaitTime(seconds: f64) void;
+
+pub extern fn SetRandomSeed(seed: u32) void;
+pub extern fn GetRandomValue(min: i32, max: i32) i32;
+pub extern fn LoadRandomSequence(count: u32, min: i32, max: i32) [*]i32;
+pub extern fn UnloadRandomSequence(sequence: [*]i32) void;
+
+pub extern fn TakeScreenshot(fileName: [*]const char) void;
+pub extern fn SetConfigFlags(flags: u32) void;
+pub extern fn OpenURL(url: [*]const char) void;
+
+pub extern fn SetTraceLogLevel(logLevel: i32) void;
+pub extern fn TraceLog(logLevel: i32, text: [*]const char, ...) void;
+pub extern fn SetTraceLogCallback(callback: TraceLogCallback) void;
+
+pub extern fn MemAlloc(size: u32) *void;
+pub extern fn MemRealloc(ptr: *void, size: u32) *void;
+pub extern fn MemFree(ptr: *void) void;
+
+pub extern fn LoadFileData(fileName: [*]const char, dataSize: [*]i32) [*]u8;
+pub extern fn UnloadFileData(data: [*]u8) void;
+pub extern fn SaveFileData(fileName: [*]const char, data: *void, dataSize: i32) bool;
+pub extern fn ExportDataAsCode(data: [*]const u8, dataSize: i32, fileName: [*]const char) bool;
+pub extern fn LoadFileText(fileName: [*]const char) *char;
+pub extern fn UnloadFileText(text: [*]char) void;
+pub extern fn SaveFileText(fileName: [*]const char, text: [*]const char) bool;
+
+pub extern fn SetLoadFileDataCallback(callback: LoadFileDataCallback) void;
+pub extern fn SetSaveFileDataCallback(callback: SaveFileDataCallback) void;
+pub extern fn SetLoadFileTextCallback(callback: LoadFileTextCallback) void;
+pub extern fn SetSaveFileTextCallback(callback: SaveFileTextCallback) void;
+
+pub extern fn FileRename(fileName: [*]const char, fileRename: [*]const char) i32;
+pub extern fn FileRemove(fileName: [*]const char) i32;
+pub extern fn FileCopy(srcPath: [*]const char, dstPath: [*]const char) i32;
+pub extern fn FileMove(srcPath: [*]const char, dstPath: [*]const char) i32;
+pub extern fn FileTextReplace(fileName: [*]const char, search: [*]const char, replacement: [*]const char) i32;
+pub extern fn FileTextFindIndex(fileName: [*]const char, search: [*]const char) i32;
+pub extern fn FileExists(fileName: [*]const char) bool;
+pub extern fn DirectoryExists(dirPath: [*]const char) bool;
+pub extern fn IsFileExtension(fileName: [*]const char, ext: [*]const char) bool;
+pub extern fn GetFileLength(fileName: [*]const char) i32;
+pub extern fn GetFileModTime(fileName: [*]const char) c_long;
+pub extern fn GetFileExtension(fileName: [*]const char) *const char;
+pub extern fn GetFileName(filePath: [*]const char) *const char;
+pub extern fn GetFileNameWithoutExt(filePath: [*]const char) *const char;
+pub extern fn GetDirectoryPath(filePath: [*]const char) *const char;
+pub extern fn GetPrevDirectoryPath(dirPath: [*]const char) *const char;
+pub extern fn GetWorkingDirectory() *const char;
+pub extern fn GetApplicationDirectory() *const char;
+pub extern fn MakeDirectory(dirPath: [*]const char) i32;
+pub extern fn ChangeDirectory(dirPath: [*]const char) bool;
+pub extern fn IsPathFile(path: [*]const char) bool;
+pub extern fn IsFileNameValid(fileName: [*]const char) bool;
+pub extern fn LoadDirectoryFiles(dirPath: [*]const char) FilePathList;
+pub extern fn LoadDirectoryFilesEx(basePath: [*]const char, filter: [*]const char, scanSubdirs: bool) FilePathList;
+pub extern fn UnloadDirectoryFiles(files: FilePathList) void;
+pub extern fn IsFileDropped() bool;
+pub extern fn LoadDroppedFiles() FilePathList;
+pub extern fn UnloadDroppedFiles(files: FilePathList) void;
+pub extern fn GetDirectoryFileCount(dirPath: [*]const char) u32;
+pub extern fn GetDirectoryFileCountEx(basePath: [*]const char, filter: [*]const char, scanSubdirs: bool) u32;
+
+pub extern fn CompressData(data: [*]const u8, dataSize: i32, compDataSize: [*]i32) [*]u8;
+pub extern fn DecompressData(compData: [*]const u8, compDataSize: i32, dataSize: [*]i32) [*]u8;
+pub extern fn EncodeDataBase64(data: [*]const u8, dataSize: i32, outputSize: [*]i32) *char;
+pub extern fn DecodeDataBase64(text: [*]const char, outputSize: [*]i32) [*]u8;
+pub extern fn ComputeCRC32(data: [*]u8, dataSize: i32) u32;
+pub extern fn ComputeMD5(data: [*]u8, dataSize: i32) [*]u32;
+pub extern fn ComputeSHA1(data: [*]u8, dataSize: i32) [*]u32;
+pub extern fn ComputeSHA256(data: [*]u8, dataSize: i32) [*]u32;
+
+pub extern fn LoadAutomationEventList(fileName: [*]const char) AutomationEventList;
+pub extern fn UnloadAutomationEventList(list: AutomationEventList) void;
+pub extern fn ExportAutomationEventList(list: AutomationEventList, fileName: [*]const char) bool;
+pub extern fn SetAutomationEventList(list: [*]AutomationEventList) void;
+pub extern fn SetAutomationEventBaseFrame(frame: i32) void;
+pub extern fn StartAutomationEventRecording() void;
+pub extern fn StopAutomationEventRecording() void;
+pub extern fn PlayAutomationEvent(event: AutomationEvent) void;
+
+pub extern fn IsKeyPressed(key: i32) bool;
+pub extern fn IsKeyPressedRepeat(key: i32) bool;
+pub extern fn IsKeyDown(key: i32) bool;
+pub extern fn IsKeyReleased(key: i32) bool;
+pub extern fn IsKeyUp(key: i32) bool;
+pub extern fn GetKeyPressed() i32;
+pub extern fn GetCharPressed() i32;
+pub extern fn GetKeyName(key: i32) *const char;
+pub extern fn SetExitKey(key: i32) void;
+
+pub extern fn IsGamepadAvailable(gamepad: i32) bool;
+pub extern fn GetGamepadName(gamepad: i32) *const char;
+pub extern fn IsGamepadButtonPressed(gamepad: i32, button: i32) bool;
+pub extern fn IsGamepadButtonDown(gamepad: i32, button: i32) bool;
+pub extern fn IsGamepadButtonReleased(gamepad: i32, button: i32) bool;
+pub extern fn IsGamepadButtonUp(gamepad: i32, button: i32) bool;
+pub extern fn GetGamepadButtonPressed() i32;
+pub extern fn GetGamepadAxisCount(gamepad: i32) i32;
+pub extern fn GetGamepadAxisMovement(gamepad: i32, axis: i32) f32;
+pub extern fn SetGamepadMappings(mappings: [*]const char) i32;
+pub extern fn SetGamepadVibration(gamepad: i32, leftMotor: f32, rightMotor: f32, duration: f32) void;
+
+pub extern fn IsMouseButtonPressed(button: i32) bool;
+pub extern fn IsMouseButtonDown(button: i32) bool;
+pub extern fn IsMouseButtonReleased(button: i32) bool;
+pub extern fn IsMouseButtonUp(button: i32) bool;
+pub extern fn GetMouseX() i32;
+pub extern fn GetMouseY() i32;
+pub extern fn GetMousePosition() Vector2;
+pub extern fn GetMouseDelta() Vector2;
+pub extern fn SetMousePosition(x: i32, y: i32) void;
+pub extern fn SetMouseOffset(offsetX: i32, offsetY: i32) void;
+pub extern fn SetMouseScale(scaleX: f32, scaleY: f32) void;
+pub extern fn GetMouseWheelMove() f32;
+pub extern fn GetMouseWheelMoveV() Vector2;
+pub extern fn SetMouseCursor(cursor: i32) void;
+
+pub extern fn GetTouchX() i32;
+pub extern fn GetTouchY() i32;
+pub extern fn GetTouchPosition(index: i32) Vector2;
+pub extern fn GetTouchPointId(index: i32) i32;
+pub extern fn GetTouchPointCount() i32;
+
+pub extern fn SetGesturesEnabled(flags: u32) void;
+pub extern fn IsGestureDetected(gesture: u32) bool;
+pub extern fn GetGestureDetected() i32;
+pub extern fn GetGestureHoldDuration() f32;
+pub extern fn GetGestureDragVector() Vector2;
+pub extern fn GetGestureDragAngle() f32;
+pub extern fn GetGesturePinchVector() Vector2;
+pub extern fn GetGesturePinchAngle() f32;
+
+pub extern fn UpdateCamera(camera: [*]Camera, mode: i32) void;
+pub extern fn UpdateCameraPro(camera: [*]Camera, movement: Vector3, rotation: Vector3, zoom: f32) void;

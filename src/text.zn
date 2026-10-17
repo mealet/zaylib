@@ -1,0 +1,65 @@
+use zaylib.types;
+
+pub extern fn GetFontDefault() Font;
+pub extern fn LoadFont(fileName: [*]const char) Font;
+pub extern fn LoadFontEx(fileName: [*]const char, fontSize: i32, codepoints: [*]const i32, codepointCount: i32) Font;
+pub extern fn LoadFontFromImage(image: Image, key: Color, firstChar: i32) Font;
+pub extern fn LoadFontFromMemory(fileType: [*]const char, fileData: [*]const u8, dataSize: i32, fontSize: i32, codepoints: [*]const i32, codepointCount: i32) Font;
+pub extern fn IsFontValid(font: Font) bool;
+pub extern fn LoadFontData(fileData: [*]const u8, dataSize: i32, fontSize: i32, codepoints: [*]const i32, codepointCount: i32, kind: i32, glyphCount: [*]i32) [*]GlyphInfo;
+pub extern fn GenImageFontAtlas(glyphs: [*]const GlyphInfo, glyphRecs: [*][*]Rectangle, glyphCount: i32, fontSize: i32, padding: i32, packMethod: i32) Image;
+pub extern fn UnloadFontData(glyphs: [*]GlyphInfo, glyphCount: i32) void;
+pub extern fn UnloadFont(font: Font) void;
+pub extern fn ExportFontAsCode(font: Font, fileName: [*]const char) bool;
+
+pub extern fn DrawFPS(posX: i32, posY: i32) void;
+pub extern fn DrawText(text: [*]const char, posX: i32, posY: i32, fontSize: i32, color: Color) void;
+pub extern fn DrawTextEx(font: Font, text: [*]const char, position: Vector2, fontSize: f32, spacing: f32, tint: Color) void;
+pub extern fn DrawTextPro(font: Font, text: [*]const char, position: Vector2, origin: Vector2, rotation: f32, fontSize: f32, spacing: f32, tint: Color) void;
+pub extern fn DrawTextCodepoint(font: Font, codepoint: i32, position: Vector2, fontSize: f32, tint: Color) void;
+pub extern fn DrawTextCodepoints(font: Font, codepoints: [*]const i32, codepointCount: i32, position: Vector2, fontSize: f32, spacing: f32, tint: Color) void;
+
+pub extern fn SetTextLineSpacing(spacing: i32) void;
+pub extern fn MeasureText(text: [*]const char, fontSize: i32) i32;
+pub extern fn MeasureTextEx(font: Font, text: [*]const char, fontSize: f32, spacing: f32) Vector2;
+pub extern fn MeasureTextCodepoints(font: Font, codepoints: [*]const i32, length: i32, fontSize: f32, spacing: f32) Vector2;
+pub extern fn GetGlyphIndex(font: Font, codepoint: i32) i32;
+pub extern fn GetGlyphInfo(font: Font, codepoint: i32) GlyphInfo;
+pub extern fn GetGlyphAtlasRec(font: Font, codepoint: i32) Rectangle;
+
+pub extern fn LoadUTF8(codepoints: [*]const i32, length: i32) *char;
+pub extern fn UnloadUTF8(text: [*]char) void;
+pub extern fn LoadCodepoints(text: [*]const char, count: [*]i32) [*]i32;
+pub extern fn UnloadCodepoints(codepoints: [*]i32) void;
+pub extern fn GetCodepointCount(text: [*]const char) i32;
+pub extern fn GetCodepoint(text: [*]const char, codepointSize: [*]i32) i32;
+pub extern fn GetCodepointNext(text: [*]const char, codepointSize: [*]i32) i32;
+pub extern fn GetCodepointPrevious(text: [*]const char, codepointSize: [*]i32) i32;
+pub extern fn CodepointToUTF8(codepoint: i32, utf8Size: [*]i32) *const char;
+
+pub extern fn LoadTextLines(text: [*]const char, count: [*]i32) [*][*]char;
+pub extern fn UnloadTextLines(text: [*][*]char, lineCount: i32) void;
+pub extern fn TextCopy(dst: [*]char, src: [*]const char) i32;
+pub extern fn TextIsEqual(text1: [*]const char, text2: [*]const char) bool;
+pub extern fn TextLength(text: [*]const char) u32;
+pub extern fn TextFormat(text: [*]const char, ...) *const char;
+pub extern fn TextSubtext(text: [*]const char, position: i32, length: i32) *const char;
+pub extern fn TextRemoveSpaces(text: [*]const char) *const char;
+pub extern fn GetTextBetween(text: [*]const char, begin: [*]const char, end: [*]const char) *char;
+pub extern fn TextReplace(text: [*]const char, search: [*]const char, replacement: [*]const char) *char;
+pub extern fn TextReplaceAlloc(text: [*]const char, search: [*]const char, replacement: [*]const char) *char;
+pub extern fn TextReplaceBetween(text: [*]const char, begin: [*]const char, end: [*]const char, replacement: [*]const char) *char;
+pub extern fn TextReplaceBetweenAlloc(text: [*]const char, begin: [*]const char, end: [*]const char, replacement: [*]const char) *char;
+pub extern fn TextInsert(text: [*]const char, insert: [*]const char, position: i32) *char;
+pub extern fn TextInsertAlloc(text: [*]const char, insert: [*]const char, position: i32) *char;
+pub extern fn TextJoin(textList: [*][*]char, count: i32, delimiter: [*]const char) *char;
+pub extern fn TextSplit(text: [*]const char, delimiter: char, count: [*]i32) [*][*]char;
+pub extern fn TextAppend(text: [*]char, append: [*]const char, position: [*]i32) void;
+pub extern fn TextFindIndex(text: [*]const char, search: [*]const char) i32;
+pub extern fn TextToUpper(text: [*]const char) *char;
+pub extern fn TextToLower(text: [*]const char) *char;
+pub extern fn TextToPascal(text: [*]const char) *char;
+pub extern fn TextToSnake(text: [*]const char) *char;
+pub extern fn TextToCamel(text: [*]const char) *char;
+pub extern fn TextToInteger(text: [*]const char) i32;
+pub extern fn TextToFloat(text: [*]const char) f32;
