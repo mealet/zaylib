@@ -10,4 +10,19 @@ type = "lib/static"
 output = "zaylib"
 link = ["raylib"]
 
+[build.family.unix]
+link = ["raylib", "m", "pthread", "dl"]
+
+[build.os.linux]
+link = ["raylib", "m", "pthread", "dl", "rt", "GL", "X11"]
+
+[build.os.darwin]
+link = ["raylib"]
+
+[build.os.windows]
+link = ["raylib", "winmm", "gdi32", "opengl32", "shell32", "ole32"]
+
+[build.os.android]
+link = ["raylib", "log", "android", "EGL", "GLESv2", "OpenSLES", "dl", "m"]
+
 [dependencies]

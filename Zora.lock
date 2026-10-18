@@ -1,8 +1,55 @@
-version = 2
+version = 3
 
 [[package]]
 name = "zaylib"
 version = "0.0.0"
 zeen = "^0.4.0"
 dependencies = []
+
+[package.build]
+output = "zaylib"
 link = ["raylib"]
+
+[package.build.os.android]
+link = [
+    "raylib",
+    "log",
+    "android",
+    "EGL",
+    "GLESv2",
+    "OpenSLES",
+    "dl",
+    "m",
+]
+
+[package.build.os.darwin]
+link = ["raylib"]
+
+[package.build.os.linux]
+link = [
+    "raylib",
+    "m",
+    "pthread",
+    "dl",
+    "rt",
+    "GL",
+    "X11",
+]
+
+[package.build.os.windows]
+link = [
+    "raylib",
+    "winmm",
+    "gdi32",
+    "opengl32",
+    "shell32",
+    "ole32",
+]
+
+[package.build.family.unix]
+link = [
+    "raylib",
+    "m",
+    "pthread",
+    "dl",
+]
