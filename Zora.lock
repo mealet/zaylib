@@ -3,6 +3,6 @@ version = 2
 [[package]]
 name = "zaylib"
 version = "0.0.0"
-zeen = "^0.3.0"
+zeen = "^0.4.0"
 dependencies = []
 link = ["raylib"]

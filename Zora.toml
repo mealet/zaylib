@@ -3,7 +3,7 @@ name = "zaylib"
 description = "Zeen bindings for raylib"
 authors = ["mealet <workjason34@gmail.com>"]
 version = "0.0.0"
-zeen = "^0.3.0"
+zeen = "^0.4.0"
 type = "lib/static"
 
 [build]
