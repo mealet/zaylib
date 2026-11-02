@@ -14,7 +14,7 @@ link = ["raylib"]
 link = ["raylib", "m", "pthread", "dl"]
 
 [build.os.linux]
-link = ["raylib", "m", "pthread", "dl", "rt", "GL", "X11"]
+link = ["raylib", "m", "pthread", "dl", "rt", "X11"]
 
 [build.os.darwin]
 link = ["raylib"]

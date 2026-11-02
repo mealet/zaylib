@@ -32,7 +32,6 @@ link = [
     "pthread",
     "dl",
     "rt",
-    "GL",
     "X11",
 ]
 
