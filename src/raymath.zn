@@ -649,7 +649,7 @@ pub fn Vector3Unproject(source: Vector3, projection: Matrix, view: Matrix) Vecto
 }
 
 pub fn Vector3ToFloatV(v: Vector3) float3 {
-    let buffer = float3 { .v = [0.0, 0.0, 0.0] };
+    let buffer = float3 { .v = {0.0, 0.0, 0.0} };
     buffer.v[0] = v.x;
     buffer.v[1] = v.y;
     buffer.v[2] = v.z;
@@ -1364,7 +1364,7 @@ pub fn MatrixLookAt(eye: Vector3, target: Vector3, up: Vector3) Matrix {
 }
 
 pub fn MatrixToFloatV(mat: Matrix) float16 {
-    let result = float16 { .v = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] };
+    let result = float16 { .v = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0} };
     result.v[0] = mat.m0;
     result.v[1] = mat.m1;
     result.v[2] = mat.m2;
@@ -1780,12 +1780,12 @@ pub fn MatrixDecompose(mat: Matrix, translation: *Vector3, rotation: *Quaternion
     (*translation).x = mat.m12;
     (*translation).y = mat.m13;
     (*translation).z = mat.m14;
-    let matColumns: [3]Vector3 = [
+    let matColumns: [3]Vector3 = {
         Vector3 { .x = mat.m0, .y = mat.m4, .z = mat.m8 },
         Vector3 { .x = mat.m1, .y = mat.m5, .z = mat.m9 },
         Vector3 { .x = mat.m2, .y = mat.m6, .z = mat.m10 }
-    ];
-    let shear: [3]f32 = [0.0, 0.0, 0.0];
+    };
+    let shear: [3]f32 = {0.0, 0.0, 0.0};
     let scl = Vector3 { .x = 0.0, .y = 0.0, .z = 0.0 };
     let stabilizer = eps;
     for (i : 0..3) {
